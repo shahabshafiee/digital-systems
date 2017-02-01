@@ -1,0 +1,189 @@
+library IEEE;
+
+use IEEE.std_logic_1164.ALL;
+
+use ieee.numeric_std.all;
+
+use IEEE.std_logic_unsigned.all;
+
+entity CODE_CONV_DA is
+
+generic (D_WIDTH : positive := 12);
+
+port (CLK, N_RES: in bit;
+
+DACODE : out bit_vector(D_WIDTH-1 downto 0);
+
+SIGNCODE: in std_logic_vector(D_WIDTH-1 downto 0)
+
+);
+
+end CODE_CONV_DA;
+
+architecture Behavioral of CODE_CONV_DA is
+
+signal DACODE_INT: bit_vector(D_WIDTH-1 downto 0);
+
+type State_Type_CCDA is (IDLE, CONVERT_STATE);
+
+signal CCDA_STATE:State_Type_CCDA;
+
+signal CCDA_NEXTSTATE:State_Type_CCDA;
+
+constant value : std_logic_vector := x"7FF";
+
+constant value1 : std_logic_vector := x"FFF";
+
+constant value2 : std_logic_vector := x"800";
+
+begin
+
+DACODE<=DACODE_INT;
+
+FSM_DA_REG : process(CLK , N_RES)
+
+begin
+
+if N_RES ='0' then
+
+CCDA_STATE <= IDLE after 5 ns ;
+
+elsif CLK = '1' and CLK 'event then
+
+CCDA_STATE <= CCDA_NEXTSTATE after 5 ns ;
+
+end if ;
+
+end process ;
+
+CONVERT: process( CLK)
+
+begin
+
+case CCDA_STATE is
+
+when IDLE =>
+
+DACODE_INT<=(others => '0');
+
+CCDA_NEXTSTATE<= CONVERT_STATE;
+
+when CONVERT_STATE =>
+
+if SIGNCODE(11)='0' then
+
+else
+
+end if;
+
+CCDA_NEXTSTATE<=IDLE;
+
+DACODE_INT <= to_bitvector(value - SIGNCODE);
+
+DACODE_INT <= to_bitvector(value1 - (SIGNCODE and (not value2)));
+
+end case;
+
+end process CONVERT;
+
+end Behavioral;
+
+TEST BENCH
+
+LIBRARY ieee;
+
+USE ieee.std_logic_1164.ALL;
+
+USE ieee.numeric_std.ALL;
+
+ENTITY CODE_CONV_DA_testbench IS
+
+END CODE_CONV_DA_testbench;
+
+ARCHITECTURE behavior OF CODE_CONV_DA_testbench IS
+
+-- Component Declaration for the Unit Under Test (UUT)
+
+COMPONENT CODE_CONV_DA
+
+PORT(
+
+CLK : IN bit;
+
+N_RES : IN bit;
+
+DACODE : OUT bit_vector(11 downto 0);
+
+SIGNCODE : IN std_logic_vector(11 downto 0)
+
+);
+
+END COMPONENT;
+
+--Inputs
+
+signal CLK : bit := '0';
+
+signal N_RES : bit := '0';
+
+signal SIGNCODE : std_logic_vector(11 downto 0) := "111111111100";
+
+--Outputs
+
+signal DACODE : bit_vector(11 downto 0);
+
+-- Clock period definitions
+
+constant CLK_period : time := 10 ns;
+
+BEGIN
+
+-- Instantiate the Unit Under Test (UUT)
+
+uut: CODE_CONV_DA PORT MAP (
+
+CLK => CLK,
+
+N_RES => N_RES,
+
+DACODE => DACODE,
+
+SIGNCODE => SIGNCODE
+
+);
+
+-- Clock process definitions
+
+CLK_process :process
+
+begin
+
+CLK <= '0';
+
+wait for CLK_period/2;
+
+CLK <= '1';
+
+wait for CLK_period/2;
+
+end process;
+
+-- Stimulus process
+
+stim_proc: process
+
+begin
+
+N_RES<='0';
+
+-- hold reset state for 100 ns.
+
+wait for 100 ns;
+
+wait;
+
+end process;
+
+END;
+
+N_RES<='1';

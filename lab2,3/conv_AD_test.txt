@@ -1,0 +1,115 @@
+LIBRARY ieee;
+
+USE ieee.std_logic_1164.ALL;
+
+use IEEE.std_logic_unsigned.all;
+
+ENTITY Code_Conv_AD_Test IS
+
+END Code_Conv_AD_Test;
+
+ARCHITECTURE behavior OF Code_Conv_AD_Test IS
+
+-- Component Declaration for the Unit Under Test (UUT)
+
+COMPONENT CODE_CONV_AD
+
+PORT(
+
+CLK : IN bit;
+
+N_RES : IN bit;
+
+CONV_EN : IN bit;
+
+ADCODE : IN bit_vector(11 downto 0);
+
+SIGNCODE : OUT std_logic_vector(11 downto 0);
+
+CC_RDY : OUT std_logic
+
+);
+
+END COMPONENT;
+
+--Inputs
+
+signal CLK : bit := '0';
+
+signal N_RES : bit := '0';
+
+signal CONV_EN : bit := '0';
+
+signal ADCODE_INT : bit_vector(11 downto 0) := "111111111100";
+
+signal SIGNCODE : std_logic_vector(11 downto 0);
+
+signal CC_RDY : std_logic;
+
+-- Clock period definitions
+
+constant CLK_period : time := 20 ns;
+
+BEGIN
+
+-- Instantiate the Unit Under Test (UUT)
+
+uut: CODE_CONV_AD PORT MAP (
+
+CLK => CLK,
+
+N_RES => N_RES,
+
+CONV_EN => CONV_EN,
+
+ADCODE => ADCODE_INT,
+
+SIGNCODE => SIGNCODE,
+
+CC_RDY => CC_RDY
+
+);
+
+-- Clock process definitions
+
+CLK_process :process
+
+begin
+
+--Outputs
+
+CLK <= '0';
+
+wait for CLK_period/2;
+
+CLK <= '1';
+
+wait for CLK_period/2;
+
+end process;
+
+-- Stimulus process
+
+stim_proc: process
+
+begin
+
+N_RES<='0';
+
+-- hold reset state for 100 ns.
+
+wait for 100 ns;
+
+--wait for CLK_period*10;
+
+-- insert stimulus here
+
+N_RES<='1';
+
+CONV_EN<='1';
+
+wait;
+
+end process;
+
+END;

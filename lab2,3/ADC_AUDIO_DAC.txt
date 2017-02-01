@@ -1,0 +1,295 @@
+library IEEE;
+
+use IEEE.std_logic_1164.ALL;
+
+use IEEE.std_logic_unsigned.ALL;
+
+-- -- -- -- -- -- -- -- -- -- DAC001/ADC001 LAB1-- -- -- -- -- -- -- -- -- -- -- -
+
+entity ADCDAC_TOP is
+
+port ( CLK, N_RES: in bit; -- 100 MHz; asynch, active low reset
+
+DA_IN : in bit_vector(11 downto 0) ;
+
+M_ODE : in bit; -- &#39;1&#39; for loop back test
+
+-- Signals to DAC0
+
+DA_SD0 : out bit ;
+
+DA_CLK0 : out bit ;
+
+DA_CS0 : out bit ;
+
+-- -ADC_SIGNALS
+
+AD_SD0 : in bit ;
+
+AD_CS0 : out bit ;
+
+AD_CLK0 : out bit;
+
+--
+
+AD_OUT : out bit_vector(11 downto 0)
+
+); -- ist DAC-Wert Ausgabe
+
+end ADCDAC_TOP ;
+
+architecture BEHAVIOUR of ADCDAC_TOP is
+
+-- -DAC001
+
+component DAC_001 is
+
+port ( SCLK, N_RES : in bit;
+
+DA_IN : in bit_vector(11 downto 0);
+
+START : in bit; -- Startsignal
+
+RDY_DA : out bit ; -- Ready-Flag
+
+-- -DAC0_SIGNALS
+
+DA_SD0 : out bit ;
+
+DA_CS0 : out bit ;
+
+DA_CLK0 : out bit) ;
+
+end component ;
+
+-- ADC001
+
+component ADC_001 is
+
+port ( SCLK, N_RES : in bit;
+
+AD_OUT : out bit_vector(11 downto 0);
+
+START : in bit; -- Startsignal
+
+RDY_AD : out bit ; -- Ready-Flag
+
+-- -ADC_SIGNALS
+
+AD_SD : in bit ;
+
+AD_CS : out bit ;
+
+AD_CLK : out bit );
+
+end component ;
+
+-- SR generator
+
+component SR_GEN is
+
+port ( CLK, N_RES : in bit; -- 100MHz; asynch, active low reset
+
+START_TE : out bit);
+
+end component SR_GEN;
+
+-- CLK_DIV
+
+component CLK_DIV is
+
+port ( CLK, N_RES: in bit; -- 100 MHz; asynch, active low reset
+
+SCLK : out bit); -- 3.125 MHz clk out
+
+end component CLK_DIV;
+
+-- -- -- -- -- -- -- -- -CODE_CONV_AD- -- -- -- -- -- --
+
+component CODE_CONV_AD
+
+Port( CLK : IN bit;
+
+N_RES : IN bit;
+
+CONV_EN : IN bit;
+
+ADCODE : IN bit_vector(11 downto 0);
+
+SIGNCODE : OUT std_logic_vector(11 downto 0);
+
+CC_RDY : OUT std_logic
+
+);
+
+end component;
+
+-- -- -- -- -- -- -- -- -CODE CONV_DA-- -- -- -- -- -- -
+
+COMPONENT CODE_CONV_DA
+
+generic (D_WIDTH : positive := 12);
+
+PORT(
+
+CLK : IN bit;
+
+N_RES : IN bit;
+
+DACODE : OUT bit_vector(11 downto 0);
+
+SIGNCODE : IN std_logic_vector(11 downto 0)
+
+);
+
+end component;
+
+-- -- -- -- -- -- -- -- -FIR_FILTER- -- -- -- -- -- --
+
+component FIR_FILTER is
+
+generic
+
+(
+
+XN_WIDTH: positive := 12; -- width x[n]
+
+YN_WIDTH: positive := 12; -- width y[n]
+
+COEFF_WIDTH: positive := 12; -- width COEFF a_k
+
+PROD_WIDTH: positive := 24; -- product COEFF(I) * XN
+
+TAPS: positive := 5 -- FIR filter order M
+
+);
+
+port
+
+(CLK: in std_logic; -- clock
+
+RESET_N:in std_logic; -- asynch reset, active-low
+
+FIR_EN: in std_logic; -- FIR filter operation enable
+
+XN: in std_logic_vector(XN_WIDTH-1 downto 0); -- filter input
+
+YN: out std_logic_vector(YN_WIDTH-1 downto 0));-- filter output
+
+end component;
+
+-- -- -- - Signals-- -- --
+
+signal START_TE : bit ;
+
+-- ADC-Signals
+
+signal DA_IN_INT0: bit_vector(11 downto 0);
+
+-- DAC-Signals
+
+signal DA_INT_SD0 , DA_INT_CS0, DA_INT_CLK0 : bit ;
+
+-- ADC-Signals
+
+signal AD_INT_SD0 , AD_INT_CS0, AD_INT_CLK0 : bit ;
+
+signal AD_OUT_INT0 : bit_vector(11 downto 0);
+
+-- -- SCLK-Signal
+
+signal SCLK : bit; -- interner Takt
+
+-- CODE_CONV_AD-Signal
+
+signal CONV_EN_INT : bit;
+
+signal ADCODE_INT: bit_vector(11 downto 0);
+
+signal SIGNCODE_OUT_INT: std_logic_vector(11 downto 0);
+
+signal CC_RDY_INT: std_logic;
+
+-- FIR-Signal
+
+signal XN_INT:std_logic_vector(11 downto 0);
+
+signal YN_INT:std_logic_vector(11 downto 0);
+
+-- CODE_CONV_DA-Signal
+
+signal DACODE_INT:bit_vector(11 downto 0);
+
+signal SIGNCODE_INT:std_logic(11 downto 0);
+
+begin
+
+AD_OUT &lt;= AD_OUT_INT0 ;
+
+with M_ODE select SIGNCODE_int &lt;=
+
+YN_int when &#39;1&#39;,
+
+SIGNCODE_OUT_int when others;
+
+DIN_TE0 &lt;= DA_IN ;
+
+DA_SD0 &lt;= DA_INT_SD0 ;
+
+DA_CS0 &lt;= DA_INT_CS0 ;
+
+DA_CLK0 &lt;= DA_INT_CLK0 ;
+
+DAC_0 : DAC_001
+
+port map ( SCLK, N_RES, YN, START_TE, open, AD_SD, AD_CS, SCLK ) ;
+
+AD_INT_SD0 &lt;= AD_SD0 ;
+
+AD_CS0 &lt;= AD_INT_CS0 ;
+
+AD_CLK0 &lt;= AD_INT_CLK0 ;
+
+ADC_0 : ADC_001
+
+port map (SCLK, N_RES , DIN_TE0, START_TE, open,DA_SD0,AD_CS, SCLK) ;-- hmmm
+
+SR_GEN0: SR_GEN
+
+port map ( CLK, N_RES, START_TE);
+
+CLK_DIV0: CLK_DIV
+
+port map (CLK, N_RES,SCLK);
+
+CC_DAC: CODE_CONV_DA
+
+port map(CLK, RESET_N,DA_IN, SIGNCODE);
+
+-- for testing
+
+CC_ADC: CODE_CONV_AD
+
+port map (CLK,RESET_N, RDY_AD,AD_OUT,SIGNCODE_OUT, FIR_EN);-- done
+
+Filter: FIR_FILTER
+
+port map (CLK, RESET_N, CC_RDY,SIGNCODE,YN);-- done
+
+test:process(SCKL, RESET_N)
+
+begin
+
+if RESET_N =&#39;0&#39; then
+
+conv_ad_enable &lt;= &#39;0&#39; after 5 ns ;
+
+elsif SCLK = &#39;1&#39; and SCLK &#39;event then
+
+conv_ad_enable &lt;= &#39;0&#39;after 5 ns ;
+
+end if ;
+
+end process;
+
+end BEHAVIOUR ;

@@ -1,0 +1,262 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/Bahram/Documents/HAW materials/DS/DS-Leutelt/Labs/Lab1/DS_LAB1/DAC/11111111111111111111/work
+Eadc_interface
+Z0 w1459827782
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 dC:/Users/Bahram/Documents/HAW materials/DS/work
+Z5 8C:/Users/Bahram/Documents/HAW materials/DS/work/adc final.vhd
+Z6 FC:/Users/Bahram/Documents/HAW materials/DS/work/adc final.vhd
+l0
+L7
+VJdIRKQMD5X`CC_J8hi?LG3
+!s100 Le;5kEI?FCD8d9V<O3T1j3
+Z7 OP;C;10.4a;61
+32
+Z8 !s110 1459827930
+!i10b 1
+Z9 !s108 1459827930.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Bahram/Documents/HAW materials/DS/work/adc final.vhd|
+Z11 !s107 C:/Users/Bahram/Documents/HAW materials/DS/work/adc final.vhd|
+!i113 1
+Z12 o-work work -2002 -explicit -O0
+Z13 tExplicit 1
+Abehav
+R1
+R2
+R3
+DEx4 work 13 adc_interface 0 22 JdIRKQMD5X`CC_J8hi?LG3
+l32
+L19
+VF1eYP5W1HRP?VkWeVa_2]3
+!s100 c3<SO1OTL7O_fzXO@3>:z3
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Eadc_interface2
+Z14 w1459828183
+R1
+R2
+R3
+R4
+Z15 8ADC_By_Prof.vhd
+Z16 FADC_By_Prof.vhd
+l0
+L6
+VZEm?3An4YWR4aC_KH0mTi3
+!s100 g111[Zlj6G7[=c3UGAg]F2
+R7
+31
+Z17 !s110 1459828372
+!i10b 1
+Z18 !s108 1459828372.000000
+Z19 !s90 -reportprogress|300|-93|-work|work|ADC_By_Prof.vhd|
+Z20 !s107 ADC_By_Prof.vhd|
+!i113 1
+Z21 o-93 -work work -O0
+R13
+Abehav2
+R1
+R2
+R3
+DEx4 work 14 adc_interface2 0 22 ZEm?3An4YWR4aC_KH0mTi3
+l30
+L18
+VY=AWQh^KOIMEiFZQ37ZcY2
+!s100 `7UK5@T[b0fh_9R2X@?=h3
+R7
+31
+R17
+!i10b 1
+R18
+R19
+R20
+!i113 1
+R21
+R13
+Eadcdac_top
+Z22 w1429880944
+Z23 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z24 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+R2
+R3
+R4
+Z25 8ADCDAC_TOP.vhd
+Z26 FADCDAC_TOP.vhd
+l0
+L6
+Vd:hnDo:9EGPi7jYF;n8O10
+!s100 @=5gLaoV@UNjn>?=^?]aL1
+R7
+31
+Z27 !s110 1459893838
+!i10b 1
+Z28 !s108 1459893838.000000
+Z29 !s90 -reportprogress|300|-93|-work|work|ADCDAC_TOP.vhd|
+Z30 !s107 ADCDAC_TOP.vhd|
+!i113 1
+R21
+R13
+Abehaviour
+R23
+R24
+R2
+R3
+Z31 DEx4 work 10 adcdac_top 0 22 d:hnDo:9EGPi7jYF;n8O10
+l53
+L18
+Z32 V=3o>Ob[?O]aV6<a;VT7ej1
+Z33 !s100 d<0]3?1GJHC>J]?nC<2Y>2
+R7
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R21
+R13
+Eclk_div
+Z34 w1429377570
+R23
+R24
+R2
+R3
+R4
+Z35 8C:/Users/Bahram/Documents/HAW materials/DS/work/CLK_DIV.vhd
+Z36 FC:/Users/Bahram/Documents/HAW materials/DS/work/CLK_DIV.vhd
+l0
+L6
+V13KME@Ec?bC0lhV>JMaBD3
+!s100 ;KG;Z2b6D0iofdo`g`m_92
+R7
+32
+Z37 !s110 1459893794
+!i10b 1
+Z38 !s108 1459893794.000000
+Z39 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Bahram/Documents/HAW materials/DS/work/CLK_DIV.vhd|
+Z40 !s107 C:/Users/Bahram/Documents/HAW materials/DS/work/CLK_DIV.vhd|
+!i113 1
+R12
+R13
+Abehaviour
+R23
+R24
+R2
+R3
+DEx4 work 7 clk_div 0 22 13KME@Ec?bC0lhV>JMaBD3
+l16
+L12
+VN0COnf<fZS<c49GMhQ[?R2
+!s100 Oe1SkHA@QbNg1I>z>X]L22
+R7
+32
+R37
+!i10b 1
+R38
+R39
+R40
+!i113 1
+R12
+R13
+Edac_001
+Z41 w1429871082
+R1
+R2
+R3
+R4
+Z42 8C:/Users/Bahram/Documents/HAW materials/DS/work/DAC_001.vhd
+Z43 FC:/Users/Bahram/Documents/HAW materials/DS/work/DAC_001.vhd
+l0
+L6
+VJTkknRB_e7lF>cb;gi4k:2
+!s100 lC?SYF>lV47K<d=4TG?Nk2
+R7
+32
+R37
+!i10b 1
+R38
+Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Bahram/Documents/HAW materials/DS/work/DAC_001.vhd|
+Z45 !s107 C:/Users/Bahram/Documents/HAW materials/DS/work/DAC_001.vhd|
+!i113 1
+R12
+R13
+Abehaviour
+R1
+R2
+R3
+DEx4 work 7 dac_001 0 22 JTkknRB_e7lF>cb;gi4k:2
+l33
+L17
+V^k=Mj5PV_a50A^GH0FSd@0
+!s100 _Y^J269NLn]3mUAJ;8?on0
+R7
+32
+R37
+!i10b 1
+R38
+R44
+R45
+!i113 1
+R12
+R13
+Esr_gen
+Z46 w1429377578
+R23
+R24
+R2
+R3
+R4
+Z47 8C:/Users/Bahram/Documents/HAW materials/DS/work/SR_GEN.vhd
+Z48 FC:/Users/Bahram/Documents/HAW materials/DS/work/SR_GEN.vhd
+l0
+L6
+V1zl8zIMlU@S=5M22a`FkW2
+!s100 i1PBNH=NkNPaBo:=6DXRb2
+R7
+32
+R37
+!i10b 1
+R38
+Z49 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Bahram/Documents/HAW materials/DS/work/SR_GEN.vhd|
+Z50 !s107 C:/Users/Bahram/Documents/HAW materials/DS/work/SR_GEN.vhd|
+!i113 1
+R12
+R13
+Abehaviour
+R23
+R24
+R2
+R3
+DEx4 work 6 sr_gen 0 22 1zl8zIMlU@S=5M22a`FkW2
+l16
+L12
+VE`?;jh81IHAjDEd7o63XP3
+!s100 0[jAiJ=ma@6?BbG]gYaGT2
+R7
+32
+R37
+!i10b 1
+R38
+R49
+R50
+!i113 1
+R12
+R13

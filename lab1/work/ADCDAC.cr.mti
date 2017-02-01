@@ -1,0 +1,40 @@
+{C:/Users/Bahram/Documents/HAW materials/DS/work/DAC_001.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Bahram/Documents/HAW materials/DS/work/DAC_001.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity DAC_001
+-- Compiling architecture BEHAVIOUR of DAC_001
+
+} {} {}} {C:/Users/Bahram/Documents/HAW materials/DS/work/CLK_DIV.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Bahram/Documents/HAW materials/DS/work/CLK_DIV.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity CLK_DIV
+-- Compiling architecture BEHAVIOUR of CLK_DIV
+
+} {} {}} {C:/Users/Bahram/Documents/HAW materials/DS/work/SR_GEN.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Bahram/Documents/HAW materials/DS/work/SR_GEN.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity SR_GEN
+-- Compiling architecture BEHAVIOUR of SR_GEN
+
+} {} {}} {C:/Users/Bahram/Documents/HAW materials/DS/work/ADCDAC_TOP.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Bahram/Documents/HAW materials/DS/work/ADCDAC_TOP.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity ADCDAC_TOP
+-- Compiling architecture BEHAVIOUR of ADCDAC_TOP
+
+} {} {}}

@@ -1,0 +1,99 @@
+library IEEE;
+
+use IEEE.std_logic_1164.ALL;
+
+use ieee.numeric_std.all;
+
+use IEEE.std_logic_unsigned.all;
+
+entity CODE_CONV_AD is
+
+generic (D_WIDTH : positive := 12);
+
+port (CLK, N_RES: in bit;
+
+CONV_EN : in bit;
+
+ADCODE : in bit_vector(D_WIDTH-1 downto 0);
+
+SIGNCODE: out std_logic_vector(D_WIDTH-1 downto 0);
+
+CC_RDY: out std_logic);
+
+end CODE_CONV_AD;
+
+architecture Behavioral of CODE_CONV_AD is
+
+signal CODE_INT: std_logic_vector(D_WIDTH-1 downto 0);
+
+signal CC_INT: std_logic ;
+
+type State_Type_CCA is (IDLE, CONVERT_STATE);
+
+signal CCA_STATE:State_Type_CCA;
+
+signal CCA_NEXTSTATE:State_Type_CCA;
+
+constant value : std_logic_vector := x"7FF";
+
+constant value1 : std_logic_vector := x"FFF";
+
+constant value2 : std_logic_vector := x"800";
+
+begin
+
+SIGNCODE <=CODE_INT;
+
+CC_RDY<=CC_INT;
+
+FSM_DA_REG : process(CLK , N_RES)
+
+begin
+
+if N_RES ='0' then
+
+CCA_STATE <= IDLE after 5 ns ;
+
+elsif CLK = '1' and CLK 'event then
+
+CCA_STATE <= CCA_NEXTSTATE after 5 ns ;
+
+end if ;
+
+end process ;
+
+CONVERT: process(CONV_EN, CLK)
+
+begin
+
+CC_INT<='0';
+
+case CCA_STATE is
+
+when IDLE => CC_INT<='0';
+
+if CONV_EN ='1' then
+
+CCA_NEXTSTATE<= CONVERT_STATE;
+
+end if;
+
+when CONVERT_STATE =>
+
+if ADCODE(11)='0' then
+
+else
+
+end if;
+
+CC_INT<='1';
+
+CCA_NEXTSTATE<=IDLE;
+
+CODE_INT <= value - to_stdlogicvector(ADCODE);
+
+CODE_INT <= value1 - (to_stdlogicvector(ADCODE) and (not value2));
+
+end case;
+
+end process CONVERT;

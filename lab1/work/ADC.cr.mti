@@ -1,0 +1,10 @@
+{C:/Users/Bahram/Documents/HAW materials/DS/work/ADC_By_Prof.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Bahram/Documents/HAW materials/DS/work/ADC_By_Prof.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity ADC_interface2
+-- Compiling architecture behav2 of ADC_interface2
+
+} {} {}}
